@@ -1,0 +1,37 @@
+ <div class="banners" >
+   <img class="mybanner" src="assets/banner3.jpg" >
+   <img class="mybanner" src="assets/banner1.jpg" >
+   <img class="mybanner" src="assets/banner5.jpg" >
+ </div>
+
+
+
+.banners{
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+img{
+  width:100%;
+}
+
+
+myIndex: number = 0;
+
+  constructor(){ }
+
+  ngOnInit(): void {
+    this.carousel();
+  }
+
+  carousel() {
+    const x: HTMLCollectionOf<Element> = document.getElementsByClassName("mybanner");
+    for (let i = 0; i < x.length; i++) {
+      (x[i] as HTMLElement).style.display = "none";
+    }
+    this.myIndex++;
+    if (this.myIndex > x.length) { this.myIndex = 1 }
+    (x[this.myIndex - 1] as HTMLElement).style.display = "block";
+    setTimeout(() => this.carousel(), 3000);
+  }
